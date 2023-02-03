@@ -1,10 +1,11 @@
 package com.driver;
 
+import java.util.regex.*;
 public class Email {
 
     private String emailId;
     private String password;
-
+//    public Email(){}
     public Email(String emailId){
         this.emailId = emailId;
         this.password = "Accio@123";
@@ -25,5 +26,20 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
+        if(oldPassword.equals(password))
+        {
+            String regex = "^(?=.*[a-z])(?=."
+                    + "*[A-Z])(?=.*\\d)"
+                    + "(?=.*[-+_!@#$%^&*., ?]).+$";
+
+            Pattern p = Pattern.compile(regex);
+
+            Matcher m = p.matcher(newPassword);
+
+            if(newPassword.length()>=8&&m.matches()==true)
+            {
+                password=newPassword;
+            }
+        }
     }
 }
